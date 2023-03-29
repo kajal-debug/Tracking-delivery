@@ -13,8 +13,22 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import Stack from "@mui/material/Stack";
+import "./style.css";
 
 export default function ImgMediaCard() {
+  const [formValue, setFormValue] = React.useState({});
+
+  const chnageHandler = (event) => {
+    setFormValue({ ...formValue, [event.target.name]: event.target.value });
+  };
+
+  const submitHandler = (event) => {
+    event.preventDefault();
+ 
+   
+  };
+
+  console.log("formValue", formValue);
   return (
     <Grid container direction="row" justify="center" alignItems="center">
       <Grid item xs={12}>
@@ -40,17 +54,31 @@ export default function ImgMediaCard() {
               noValidate
               autoComplete="off"
             >
-              
+              <TextField
+                id="outlined-basic"
+                label="email"
+                variant="outlined"
+                style={{ width: "100%" }}
+                type="text"
+                name="email"
+                onChange={chnageHandler}
+              />
               <TextField
                 id="outlined-basic"
                 label="Name"
                 variant="outlined"
                 style={{ width: "100%" }}
+                type="text"
+                name="name"
+                onChange={chnageHandler}
               />
               <TextField
                 id="outlined-basic"
                 label="Phone Number"
                 variant="outlined"
+                type="number"
+                name="phone"
+                onChange={chnageHandler}
                 style={{ width: "100%" }}
               />
               <FormControl style={{ width: "100%" }}>
@@ -59,8 +87,9 @@ export default function ImgMediaCard() {
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
                   //value={age}
+                  name="courier"
                   label="Courier"
-                  //onChange={handleChange}
+                  onChange={chnageHandler}
                 >
                   <MenuItem value="XpressBees">XpressBees</MenuItem>
                   <MenuItem value="Fedex">Fedex</MenuItem>
@@ -80,6 +109,9 @@ export default function ImgMediaCard() {
                 label="Tracting Number"
                 variant="outlined"
                 style={{ width: "100%" }}
+                type="number"
+                name="tracknumber"
+                onChange={chnageHandler}
               />
             </Box>
             <Stack direction="row" style={{ marginLeft: "15px" }}>
@@ -87,6 +119,7 @@ export default function ImgMediaCard() {
                 variant="outlined"
                 style={{ width: "100%", margin: "20px 10px" }}
                 color="error"
+                onClick={submitHandler}
               >
                 Track Your Order
               </Button>
@@ -94,7 +127,6 @@ export default function ImgMediaCard() {
           </Card>
         </Grid>
       </Grid>
-    
     </Grid>
   );
 }
