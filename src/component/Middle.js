@@ -14,6 +14,7 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import Stack from "@mui/material/Stack";
 import "./style.css";
+import axios from "axios";
 
 export default function ImgMediaCard() {
   const [formValue, setFormValue] = React.useState({});
@@ -21,11 +22,12 @@ export default function ImgMediaCard() {
   const chnageHandler = (event) => {
     setFormValue({ ...formValue, [event.target.name]: event.target.value });
   };
-
+  
   const submitHandler = (event) => {
     event.preventDefault();
- 
-   
+    axios.post('http://localhost:4000/route',{formValue:formValue})
+    .then(response => console.log("hi"))
+    .catch(error => console.error(error));
   };
 
   console.log("formValue", formValue);
